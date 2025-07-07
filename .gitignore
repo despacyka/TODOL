@@ -4,5 +4,5 @@ node_modules
 
 /generated/prisma
 
-TODOL.code-workspace
+/TODOL.code-workspace
 # Ignore the build output directory
