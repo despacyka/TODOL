@@ -3,3 +3,6 @@ node_modules
 .env
 
 /generated/prisma
+
+TODOL.code-workspace
+# Ignore the build output directory
