@@ -1,7 +1,8 @@
 {
   "name": "todol",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,7 +10,6 @@
   "author": "Carlos Avila",
   "license": "ISC",
   "description": "app chiquita para aprender a usar nodejs, express y postgresql, ",
-  "type": "module",
   "dependencies": {
     "@prisma/client": "^6.11.1",
     "express": "^5.1.0",
