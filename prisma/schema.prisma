@@ -13,3 +13,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  email    String @unique
+  todos    Todo[] //relacion 1 to many
+}
+
+model Todo {
+  id        Int     @id @default(autoincrement())
+  label     String
+  completed Boolean @default(false)
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id]) //la clave foranea papa.
+}
