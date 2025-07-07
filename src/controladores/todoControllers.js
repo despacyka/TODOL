@@ -5,9 +5,10 @@ export const createTodo = async (req, res) => {
     const userId = parseInt(req.params.userId);
     
     // Validar si el usuario existe
-    const userExists = await prisma.user.findUnique({
-      where: { id: userId }
-    });
+ // Código corregido (versión correcta)
+const userExists = await prisma.user.findUnique({
+  where: { id: userId }
+});
     
     if (!userExists) {
       return res.status(404).json({ error: 'Usuario no encontrado' });

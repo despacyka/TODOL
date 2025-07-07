@@ -7,7 +7,7 @@ import {
   deleteTodo
 } from '../controladores/todoControllers.js';
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 // Middleware para validar userId en todas las rutas
 router.use('/:todoId', async (req, res, next) => {
