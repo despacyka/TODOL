@@ -1,28 +1,31 @@
-  import { prisma } from '../server.js';
+import { prisma } from '../server.js';
 
 export const createTodo = async (req, res) => {
   try {
     const userId = parseInt(req.params.userId);
-    
+    if (isNaN(userId)) {
+      return res.status(400).json({ error: 'userId inválido en la ruta' });
+    }
+
     // Validar si el usuario existe
- // Código corregido (versión correcta)
-const userExists = await prisma.user.findUnique({
-  where: { id: userId }
-});
-    
+    const userExists = await prisma.user.findUnique({
+      where: { id: userId }
+    });
+
     if (!userExists) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
-    
+
     // Crear nueva tarea
     const newTodo = await prisma.todo.create({
       data: {
         label: req.body.label,
+        description: req.body.description || null, // <-- Nuevo campo
         completed: req.body.completed || false,
         userId: userId
       }
     });
-    
+
     res.status(201).json(newTodo);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -89,6 +92,7 @@ export const updateTodo = async (req, res) => {
       where: { id: todoId },
       data: {
         label: req.body.label || todo.label,
+        description: req.body.description !== undefined ? req.body.description : todo.description, // <-- Nuevo campo
         completed: req.body.completed !== undefined ? req.body.completed : todo.completed
       }
     });

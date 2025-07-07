@@ -24,6 +24,7 @@ model User {
 model Todo {
   id        Int     @id @default(autoincrement())
   label     String
+  description String?
   completed Boolean @default(false)
   userId    Int
   user      User    @relation(fields: [userId], references: [id]) //la clave foranea papa.
